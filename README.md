@@ -2,6 +2,8 @@
 
 > A basic demo that fetches weather observations for the past 24 hours for around 150 UK locations using the Met Office Datapoint API, and displays average and detailed information for your chosen locations.
 
+**This demo was put together quickly and there are a number of Node Package Manager dependencies left over from the boilerplate code that haven't been removed.** 
+
 ## Getting started
 
 You'll need [NodeJS](https://nodejs.org/) and [Grunt](http://gruntjs.com/) to install and run this demo.
