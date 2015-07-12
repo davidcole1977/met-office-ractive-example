@@ -1,0 +1,45 @@
+{
+  "name": "project-boilerplate",
+  "version": "1.0.0",
+  "scripts": {
+    "test": "grunt dist --verbose"
+  },
+  "homepage": "https://github.com/davidcole1977/project-boilerplate",
+  "repository": {
+    "type": "git",
+    "url": "https://github.com/davidcole1977/project-boilerplate.git"
+  },
+  "author": "David Cole",
+  "license": "LGPL-2.1",
+  "devDependencies": {
+    "chai": "^2.3.0",
+    "chalk": "^1.0.0",
+    "express": "^4.12.3",
+    "grunt": "^0.4.5",
+    "grunt-browserify": "^3.7.0",
+    "grunt-cli": "^0.1.13",
+    "grunt-contrib-clean": "^0.6.0",
+    "grunt-contrib-copy": "^0.8.0",
+    "grunt-contrib-jshint": "^0.11.2",
+    "grunt-contrib-watch": "^0.6.1",
+    "grunt-coveralls": "^1.0.0",
+    "grunt-env": "^0.4.4",
+    "grunt-istanbul": "^0.6.1",
+    "grunt-karma": "^0.11.2",
+    "grunt-mocha-test": "^0.12.7",
+    "grunt-open": "^0.2.3",
+    "grunt-sass": "^0.18.1",
+    "karma": "^0.12.37",
+    "karma-bro": "^0.11.1",
+    "karma-browserify": "^4.2.1",
+    "karma-chai": "^0.1.0",
+    "karma-chrome-launcher": "^0.2.0",
+    "karma-mocha": "^0.2.0",
+    "karma-mocha-reporter": "^1.0.2",
+    "karma-phantomjs-launcher": "^0.2.0",
+    "lodash": "^3.7.0",
+    "mocha": "^2.2.4",
+    "phantomjs": "^1.9.17",
+    "time-grunt": "^1.2.1"
+  }
+}

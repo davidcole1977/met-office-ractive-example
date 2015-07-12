@@ -1,0 +1,136 @@
+<!doctype html>
+<html class="no-js" lang="en_GB">
+  <head>
+    <meta charset="utf-8">
+    <meta http-equiv="x-ua-compatible" content="ie=edge">
+
+    <title>Basic Met Office Datapoint API / Ractive Example</title>
+
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+
+    <link rel="stylesheet" href="css/vendor/semantic-ui.2.0.3.min.css">
+
+    <script src="js/vendor/modernizr-2.8.3.min.js"></script>
+  </head>
+  <body>
+
+    <div class="ui container">
+
+      <h1>Met Office Datapoint API Example</h1>
+
+      <p>This basic demo fetches weather observations from the past 24 hours from around 150 UK locations using the Met Office Datapoint API and displays average and detailed information for your chosen locations.</p>
+
+      <p>To get started, type a letter or two in the "add location" box, choose from the locations shortlist that appears and click "add" to see information for that location. You can add as many locations as you like and order the results as you wish.</p>
+
+      <div id="dp-view-container"></div>
+
+    </div>
+
+    <script id="dp-view-template" type="text/ractive">
+
+      <div class="ui form segment">
+
+        {{#if isReady}}
+          <div class="inline field">
+            <label for="location-to-add">Add location:</label>
+            <input value="{{locationToAdd}}" type="text" list="locations-data-list" id="location-to-add" />
+            <button on-click="addLocation:{{locationToAdd}}" class="ui submit button">Add</button>
+
+            <datalist id="locations-data-list">
+              {{#each locationNames}}
+                <option value="{{.}}">
+              {{/each}}
+            </datalist>
+          </div>
+        {{else}}
+          <p>Waiting for Met Office Datapoint API...</p>
+        {{/if}}
+
+        {{#if filters.hasMoreThanOneEntry(observationSets)}}
+          <div>
+            <fieldset>
+              <legend>Order by</legend>
+              <input type="radio" name="{{sortValue}}" value="location" id="sort-value-location" />
+              <label for="sort-value-location">location</label>
+              <input type="radio" name="{{sortValue}}" value="temperature" id="sort-value-temperature" />
+              <label for="sort-value-temperature">temperature</label>
+              <input type="radio" name="{{sortValue}}" value="windSpeed" id="sort-value-windSpeed" />
+              <label for="sort-value-windSpeed">wind speed</label>
+              <input type="radio" name="{{sortValue}}" value="airPressure" id="sort-value-airPressure" />
+              <label for="sort-value-airPressure">air pressure</label>
+            </fieldset>
+          </div>
+        {{/if}}
+        
+      </div>
+
+      {{#if observationSets}}
+
+        <h2>Average observations for the past 24 hours</h2>
+      
+        <table class="ui celled striped table">
+          <thead>
+            <tr>
+              <th>Location</th>
+              <th>Temperature</th>
+              <th>Windspeed</th>
+              <th>Air Pressure</th>
+            </tr>
+          </thead>
+          <tbody>
+
+            {{#each filters.sortObservationAverages(observationSets, sortValue)}}
+              <tr>
+                <td>{{location}}</td>
+                {{#averages}}
+                  <td>{{filters.formatTemp(temperature)}}</td>
+                  <td>{{filters.formatSpeed(windSpeed)}}</td>
+                  <td>{{filters.formatPressure(airPressure)}}</td>
+                {{/averages}}
+              </tr>
+            {{/each}}
+
+          </tbody>
+        </table>
+      {{/if}}
+
+      {{#if observationSets}}
+
+        <h2>Detailed observations for the past 24 hours</h2>
+
+        {{#each filters.sortObservationAverages(observationSets, sortValue)}}
+          <h3>{{location}}</h3>
+
+          <table class="ui celled striped table">
+            <thead>
+              <tr>
+                <th>Time</th>
+                <th>Temperature</th>
+                <th>Windspeed</th>
+                <th>Air Pressure</th>
+              </tr>
+            </thead>
+            <tbody>
+
+              {{#each observations}}
+                <tr>
+                  <td>{{filters.formatHour(hour)}}</td>
+                  <td>{{filters.formatTemp(temperature)}}</td>
+                  <td>{{filters.formatSpeed(windSpeed)}}</td>
+                  <td>{{filters.formatPressure(airPressure)}}</td>
+                </tr>
+              {{/each}}
+
+            </tbody>
+          </table>
+        {{/each}}
+      {{/if}}
+
+    </script>
+      
+    <script src="js/vendor/jquery-1.11.2.min.js"></script>
+    <script src="js/vendor/ractive-0.7.3.min.js"></script>
+    <script src="js/main.js"></script>        
+
+  </body>
+</html>
