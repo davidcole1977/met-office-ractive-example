@@ -4,7 +4,7 @@
 
 ## Getting started
 
-You'll need `[NodeJS](https://nodejs.org/)` and `[Grunt](http://gruntjs.com/)` to install and run this demo.
+You'll need [NodeJS](https://nodejs.org/) and [Grunt](http://gruntjs.com/) to install and run this demo.
 
 ### Get a Datapoint API key and put it in the code
 
